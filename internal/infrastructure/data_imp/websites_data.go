@@ -22,7 +22,7 @@ func (w *webSiteData) Get(ctx context.Context, id int) (*entities.WebSite, error
 func (w *webSiteData) Add(ctx context.Context, website entities.WebSite) (*entities.WebSite, error) {
 	return nil, nil
 }
-func (w *webSiteData) Edit(ctx context.Context, website entities.WebSite) (*entities.WebSite, error) {
+func (w *webSiteData) Update(ctx context.Context, website entities.WebSite) (*entities.WebSite, error) {
 	return nil, nil
 }
 func (w *webSiteData) Delete(ctx context.Context, id int) (bool, error) {

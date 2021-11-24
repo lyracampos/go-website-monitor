@@ -1,4 +1,4 @@
-package handlers
+package websites
 
 import (
 	"encoding/json"
@@ -10,19 +10,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type websiteActiveHandler struct {
+type websiteDeactiveHandler struct {
 	log     *log.Logger
-	usecase usecases.WebsiteActiveUseCase
+	usecase usecases.WebsiteDeactiveUseCase
 }
 
-func NewWebsiteActiveHandler(l *log.Logger, u usecases.WebsiteActiveUseCase) *websiteActiveHandler {
-	return &websiteActiveHandler{
+func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactiveUseCase) *websiteDeactiveHandler {
+	return &websiteDeactiveHandler{
 		log:     l,
 		usecase: u,
 	}
 }
 
-func (h *websiteActiveHandler) Active(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteDeactiveHandler) Deactive(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -31,7 +31,7 @@ func (h *websiteActiveHandler) Active(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	command := usecases.WebsiteActiveCommand{Id: id}
+	command := usecases.WebsiteDeactiveCommand{Id: id}
 	response, err := h.usecase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)
