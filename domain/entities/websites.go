@@ -4,9 +4,9 @@ import "time"
 
 type WebSite struct {
 	Id        int
-	Name      string
-	Url       string
-	Status    int
+	Name      string //obrigatóio, 3+
+	Url       string //obrigatório, válido, 10+
+	Status    int //obrigatório
 	LastCheck time.Time
 }
 

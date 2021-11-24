@@ -2,7 +2,7 @@ package data
 
 import (
 	"context"
-	"website-monitor/domain/core/entities"
+	"website-monitor/domain/entities"
 )
 
 type WebsiteRepository interface {
