@@ -1,6 +1,6 @@
 package websiteactive
 
-type WebsiteActiveHandler interface {
+type WebsiteActiveUseCase interface {
 	Execute(command WebsiteActiveCommand) (*WebsiteActiveResponse, error)
 }
 

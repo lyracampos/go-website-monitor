@@ -2,10 +2,10 @@ package data
 
 import (
 	"context"
-	"website-monitor/domain/entities"
+	"website-monitor/internal/domain/entities"
 )
 
-type WebsiteRepository interface {
+type WebsiteData interface {
 	List(ctx context.Context) (*entities.WebSites, error)
 	Get(ctx context.Context, id int) (*entities.WebSite, error)
 	Add(ctx context.Context, website entities.WebSite) (*entities.WebSite, error)
