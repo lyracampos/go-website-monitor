@@ -1,4 +1,4 @@
-package websiteedit
+package usecases
 
 type WebsiteEditHandler interface {
 	Execute(command WebsiteEditCommand) (*WebsiteEditResponse, error)

@@ -1,4 +1,4 @@
-package websiteadd
+package usecases
 
 type WebsiteAddHandler interface {
 	Execute(command WebsiteAddCommand) (*WebsiteAddResponse, error)

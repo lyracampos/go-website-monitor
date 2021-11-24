@@ -1,4 +1,4 @@
-package websitemonitoring
+package usecases
 
 type WebsiteMonitoringHandler interface {
 	Execute(command WebsiteMonitoringCommand) (*WebsiteMonitoringResponse, error)
