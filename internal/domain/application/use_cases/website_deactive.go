@@ -1,8 +1,10 @@
-package websitedeactive
+package usecases
 
-type WebsiteDeactiveHandler interface {
+type WebsiteDeactiveUseCase interface {
 	Execute(command WebsiteDeactiveCommand) (*WebsiteDeactiveResponse, error)
 }
 
-type WebsiteDeactiveCommand struct{}
+type WebsiteDeactiveCommand struct {
+	Id int
+}
 type WebsiteDeactiveResponse struct{}

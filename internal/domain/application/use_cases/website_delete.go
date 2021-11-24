@@ -1,4 +1,4 @@
-package websitedelete
+package usecases
 
 type WebsiteDeleteHandler interface {
 	Execute(command WebsiteDeleteCommand) (*WebsiteDeleteResponse, error)
