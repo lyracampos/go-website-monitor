@@ -2,12 +2,11 @@ package websites
 
 import (
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
 	useCases "website-monitor/internal/domain/application/use_cases"
-
-	"github.com/gorilla/mux"
 )
 
 type websiteActiveHandler struct {
