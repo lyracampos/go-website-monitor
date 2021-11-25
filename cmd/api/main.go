@@ -36,6 +36,11 @@ func main() {
 	websiteRouter := router.Methods(http.MethodGet).Subrouter()
 	websiteRouter.HandleFunc("/websites", websiteListHandler.List)
 
+	// website - get
+	websiteGetHandler := websites.NewWebsiteGetHandler(log, data)
+	websiteGetRouter := router.Methods(http.MethodGet).Subrouter()
+	websiteGetRouter.HandleFunc("/websites/{id:[0-9]+}", websiteGetHandler.Get)
+
 	// website - active
 	websiteActiveUseCase := usecasesimp.NewWebsiteActiveUseCase(data)
 	websiteActiveHandler := websites.NewWebsiteActiveHandler(log, websiteActiveUseCase)

@@ -21,6 +21,7 @@ func NewWebsiteListHandler(l *log.Logger, d data.WebsiteData) *websiteListHandle
 
 func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
 	h.log.Println("listing - websites")
+	rw.Header().Set("Content-Type", "application/json")
 
 	websites, err := h.data.List()
 	if err != nil {
@@ -29,6 +30,5 @@ func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	rw.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(rw).Encode(websites)
 }
