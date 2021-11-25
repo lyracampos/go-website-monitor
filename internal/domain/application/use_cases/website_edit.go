@@ -1,8 +1,17 @@
 package usecases
 
-type WebsiteEditHandler interface {
+type WebsiteEditUseCase interface {
 	Execute(command WebsiteEditCommand) (*WebsiteEditResponse, error)
 }
 
-type WebsiteEditCommand struct{}
-type WebsiteEditResponse struct{}
+type WebsiteEditCommand struct {
+	Id   int
+	Name string
+	Url  string
+}
+type WebsiteEditResponse struct {
+	Id     int
+	Name   string
+	Url    string
+	Status int
+}

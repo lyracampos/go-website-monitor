@@ -7,4 +7,6 @@ type WebsiteActiveUseCase interface {
 type WebsiteActiveCommand struct {
 	Id int
 }
-type WebsiteActiveResponse struct{}
+type WebsiteActiveResponse struct {
+	Success bool
+}

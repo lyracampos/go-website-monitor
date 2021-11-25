@@ -6,30 +6,27 @@ import (
 	"website-monitor/internal/domain/infrastructure/data"
 )
 
-type websiteActiveUseCase struct {
+type websiteDeleteUseCase struct {
 	data data.WebsiteData
 }
 
-func NewWebsiteActiveUseCase(d data.WebsiteData) usecases.WebsiteActiveUseCase {
-	return &websiteActiveUseCase{
+func NewWebsiteDeleteUseCase(d data.WebsiteData) usecases.WebsiteDeleteUseCase {
+	return &websiteDeleteUseCase{
 		data: d,
 	}
 }
 
-func (w *websiteActiveUseCase) Execute(command usecases.WebsiteActiveCommand) (*usecases.WebsiteActiveResponse, error) {
+func (w *websiteDeleteUseCase) Execute(command usecases.WebsiteDeleteCommand) (*usecases.WebsiteDeleteResponse, error) {
 	websiteDb, err := w.data.Get(command.Id)
 	if err != nil || websiteDb == nil {
 		return nil, errors.New("could not found this website")
 	}
 
-	websiteDb.Active()
-	//todo: validate
-
-	_, err = w.data.Update(*websiteDb)
+	_, err = w.data.Delete(command.Id)
 	if err != nil {
 		return nil, errors.New("an exception was occurred")
 	}
 
-	response := usecases.WebsiteActiveResponse{Success: true}
+	response := usecases.WebsiteDeleteResponse{Success: true}
 	return &response, nil
 }

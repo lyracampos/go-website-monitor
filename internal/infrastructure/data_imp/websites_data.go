@@ -7,9 +7,9 @@ import (
 	"website-monitor/internal/domain/infrastructure/data"
 )
 
-var portalG1 = entities.WebSite{Id: 1, Name: "G1.com", Url: "http://www.g1.com.br", Status: 1, LastCheck: time.Now()}
-var uol = entities.WebSite{Id: 2, Name: "UOL", Url: "http://www.uol.com.br", Status: 1, LastCheck: time.Now().Add(-2)}
-var youtube = entities.WebSite{Id: 3, Name: "Youtube", Url: "http://www.youtube.com.br", Status: 1, LastCheck: time.Now()}
+var portalG1 = entities.WebSite{Id: 1, Name: "G1.com", Url: "http://www.g1.com.br", Status: 1, LastChecked: time.Now()}
+var uol = entities.WebSite{Id: 2, Name: "UOL", Url: "http://www.uol.com.br", Status: 1, LastChecked: time.Now().Add(-2)}
+var youtube = entities.WebSite{Id: 3, Name: "Youtube", Url: "http://www.youtube.com.br", Status: 1, LastChecked: time.Now()}
 var websites = []*entities.WebSite{&portalG1, &uol, &youtube}
 
 type webSiteData struct {

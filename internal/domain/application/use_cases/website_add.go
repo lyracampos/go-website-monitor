@@ -1,8 +1,17 @@
 package usecases
 
-type WebsiteAddHandler interface {
+type WebsiteAddUseCase interface {
 	Execute(command WebsiteAddCommand) (*WebsiteAddResponse, error)
 }
 
-type WebsiteAddCommand struct{}
-type WebsiteAddResponse struct{}
+type WebsiteAddCommand struct {
+	Name string
+	Url  string
+}
+
+type WebsiteAddResponse struct {
+	Id     int
+	Name   string
+	Url    string
+	Status int
+}
