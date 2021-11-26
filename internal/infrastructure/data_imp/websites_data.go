@@ -31,7 +31,15 @@ func (w *webSiteData) Get(id int) (*entities.WebSite, error) {
 	return nil, errors.New("could not found website")
 }
 func (w *webSiteData) Add(website entities.WebSite) (*entities.WebSite, error) {
-	return nil, nil
+	newId := 1
+	lastWebsite := websites[len(websites)-1]
+
+	if lastWebsite != nil {
+		newId = lastWebsite.Id + 1
+	}
+	website.Id = newId
+	websites = append(websites, &website)
+	return &website, nil
 }
 func (w *webSiteData) Update(website entities.WebSite) (*entities.WebSite, error) {
 	return nil, nil

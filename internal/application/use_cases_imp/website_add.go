@@ -22,7 +22,7 @@ func (w *websiteAddUseCase) Execute(command usecases.WebsiteAddCommand) (*usecas
 
 	//todo: validar entidade
 	webistedb, err := w.data.Add(*website)
-	if err != nil {
+	if err != nil || webistedb == nil {
 		return nil, errors.New("an exception was occurred")
 	}
 

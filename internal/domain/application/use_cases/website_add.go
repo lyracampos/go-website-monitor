@@ -5,8 +5,8 @@ type WebsiteAddUseCase interface {
 }
 
 type WebsiteAddCommand struct {
-	Name string
-	Url  string
+	Name string `json:"name"`
+	Url  string `json:"url"`
 }
 
 type WebsiteAddResponse struct {
