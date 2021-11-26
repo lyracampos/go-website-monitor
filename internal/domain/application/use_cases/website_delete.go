@@ -1,8 +1,12 @@
 package usecases
 
-type WebsiteDeleteHandler interface {
+type WebsiteDeleteUseCase interface {
 	Execute(command WebsiteDeleteCommand) (*WebsiteDeleteResponse, error)
 }
 
-type WebsiteDeleteCommand struct{}
-type WebsiteDeleteResponse struct{}
+type WebsiteDeleteCommand struct {
+	Id int
+}
+type WebsiteDeleteResponse struct {
+	Success bool
+}

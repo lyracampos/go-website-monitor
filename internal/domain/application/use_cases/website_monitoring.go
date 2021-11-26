@@ -1,6 +1,6 @@
 package usecases
 
-type WebsiteMonitoringHandler interface {
+type WebsiteMonitoringUseCase interface {
 	Execute(command WebsiteMonitoringCommand) (*WebsiteMonitoringResponse, error)
 }
 

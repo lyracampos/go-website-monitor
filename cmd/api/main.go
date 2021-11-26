@@ -1,49 +1,88 @@
 package main
 
 import (
+	"context"
 	"log"
+	"net/http"
 	"os"
+	"os/signal"
+	"time"
 	usecasesimp "website-monitor/internal/application/use_cases_imp"
 	dataimp "website-monitor/internal/infrastructure/data_imp"
-	"website-monitor/internal/services/api/handlers"
+	"website-monitor/internal/services/api/handlers/health"
+	"website-monitor/internal/services/api/handlers/websites"
+
+	"github.com/gorilla/mux"
+	"github.com/nicholasjackson/env"
 )
 
+var bindAddress = env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
+
 func main() {
-	//env.Parse()
-	// configuration := config.New()
-	// database := config.NewMongoDatabase(configuration)
+	env.Parse()
 
-	// // Setup Repository
-	// productRepository := repository.NewProductRepository(database)
+	router := mux.NewRouter()
 
-	// // Setup Service
-	// productService := service.NewProductService(&productRepository)
+	log := log.New(os.Stdout, "websites-monitor-api ", log.LstdFlags)
+	data := dataimp.NewWebsiteData()
 
-	// // Setup Controller
-	// productController := controller.NewProductController(&productService)
+	// health
+	healthHandler := health.NewHealthHandler(log, data)
+	healthRouter := router.Methods(http.MethodGet).Subrouter()
+	healthRouter.HandleFunc("/health-check", healthHandler.Check)
 
-	l := log.New(os.Stdout, "products-api ", log.LstdFlags)
-	repo := dataimp.NewWebsiteData()
-	usecase := usecasesimp.NewWebsiteActiveUseCase(repo)
-	handler := handlers.NewWebsiteActiveHandler(l, usecase)
+	// webiste - list
+	websiteListHandler := websites.NewWebsiteListHandler(log, data)
+	websiteRouter := router.Methods(http.MethodGet).Subrouter()
+	websiteRouter.HandleFunc("/websites", websiteListHandler.List)
 
-	// activeUseCase := handlers.NewWebsiteActiveHandler(l, usecases.WebsiteActiveUseCase)
+	// website - get
+	websiteGetHandler := websites.NewWebsiteGetHandler(log, data)
+	websiteGetRouter := router.Methods(http.MethodGet).Subrouter()
+	websiteGetRouter.HandleFunc("/websites/{id:[0-9]+}", websiteGetHandler.Get)
 
-	// // create the handlers
-	// ph := handlers.NewWebsiteActiveHandler(l)
+	// website - add
+	websiteAddUseCase := usecasesimp.NewWebsiteAddUseCase(data)
+	websiteAddHandler := websites.NewWebsiteAddHandler(log, websiteAddUseCase)
+	websiteAddRouter := router.Methods(http.MethodPost).Subrouter()
+	websiteAddRouter.HandleFunc("/websites", websiteAddHandler.Add)
 
-	// // create a new serve mux and register the handlers
-	// sm := mux.NewRouter()
+	// website - active
+	websiteActiveUseCase := usecasesimp.NewWebsiteActiveUseCase(data)
+	websiteActiveHandler := websites.NewWebsiteActiveHandler(log, websiteActiveUseCase)
+	websiteActiveRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteActiveRouter.HandleFunc("/websites/{id:[0-9]+}/active", websiteActiveHandler.Active)
 
-	// getRouter := sm.Methods(http.MethodGet).Subrouter()
-	// getRouter.HandleFunc("/", ph.GetProducts)
+	http.Handle("/", router)
 
-	// putRouter := sm.Methods(http.MethodPut).Subrouter()
-	// putRouter.HandleFunc("/{id:[0-9]+}", ph.UpdateProducts)
-	// putRouter.Use(ph.MiddlewareValidateProduct)
+	s := http.Server{
+		Addr:         *bindAddress,
+		Handler:      router,
+		ErrorLog:     log,
+		ReadTimeout:  5 * time.Second,
+		WriteTimeout: 10 * time.Second,
+		IdleTimeout:  120 * time.Second,
+	}
 
-	// postRouter := sm.Methods(http.MethodPost).Subrouter()
-	// postRouter.HandleFunc("/", ph.AddProduct)
-	// postRouter.Use(ph.MiddlewareValidateProduct)
+	go func() {
+		log.Println("Starting server on port 9090")
 
+		err := s.ListenAndServe()
+		if err != nil {
+			log.Printf("Error starting server: %s\n", err)
+			os.Exit(1)
+		}
+	}()
+
+	// trap sigterm or interupt and gracefully shutdown the server
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+
+	// Block until a signal is received.
+	sig := <-c
+	log.Println("Got signal:", sig)
+
+	// gracefully shutdown the server, waiting max 30 seconds for current operations to complete
+	ctx, _ := context.WithTimeout(context.Background(), 30*time.Second)
+	s.Shutdown(ctx)
 }

@@ -1,28 +1,27 @@
-package handlers
+package websites
 
 import (
 	"encoding/json"
+	"github.com/gorilla/mux"
 	"log"
 	"net/http"
 	"strconv"
-	usecases "website-monitor/internal/domain/application/use_cases"
-
-	"github.com/gorilla/mux"
+	useCases "website-monitor/internal/domain/application/use_cases"
 )
 
-type websiteDeactiveHandler struct {
+type websiteActiveHandler struct {
 	log     *log.Logger
-	usecase usecases.WebsiteDeactiveUseCase
+	useCase useCases.WebsiteActiveUseCase
 }
 
-func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactiveUseCase) *websiteDeactiveHandler {
-	return &websiteDeactiveHandler{
+func NewWebsiteActiveHandler(l *log.Logger, u useCases.WebsiteActiveUseCase) *websiteActiveHandler {
+	return &websiteActiveHandler{
 		log:     l,
-		usecase: u,
+		useCase: u,
 	}
 }
 
-func (h *websiteDeactiveHandler) Deactive(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteActiveHandler) Active(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -31,8 +30,8 @@ func (h *websiteDeactiveHandler) Deactive(rw http.ResponseWriter, r *http.Reques
 		return
 	}
 
-	command := usecases.WebsiteDeactiveCommand{Id: id}
-	response, err := h.usecase.Execute(command)
+	command := useCases.WebsiteActiveCommand{Id: id}
+	response, err := h.useCase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)
 		rw.Write([]byte("an exception was occurred."))

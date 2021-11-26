@@ -7,4 +7,6 @@ type WebsiteDeactiveUseCase interface {
 type WebsiteDeactiveCommand struct {
 	Id int
 }
-type WebsiteDeactiveResponse struct{}
+type WebsiteDeactiveResponse struct {
+	Success bool
+}
