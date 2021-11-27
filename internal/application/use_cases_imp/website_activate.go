@@ -6,23 +6,23 @@ import (
 	"website-monitor/internal/domain/infrastructure/data"
 )
 
-type websiteActiveUseCase struct {
+type websiteActivateUseCase struct {
 	data data.WebsiteData
 }
 
-func NewWebsiteActiveUseCase(d data.WebsiteData) usecases.WebsiteActivateUseCase {
-	return &websiteActiveUseCase{
+func NewWebsiteActivateUseCase(d data.WebsiteData) usecases.WebsiteActivateUseCase {
+	return &websiteActivateUseCase{
 		data: d,
 	}
 }
 
-func (w *websiteActiveUseCase) Execute(command usecases.WebsiteActivateCommand) (*usecases.WebsiteActivateResponse, error) {
+func (w *websiteActivateUseCase) Execute(command usecases.WebsiteActivateCommand) (*usecases.WebsiteActivateResponse, error) {
 	websiteDb, err := w.data.Get(command.Id)
 	if err != nil || websiteDb == nil {
 		return nil, errors.New("could not found this website")
 	}
 
-	websiteDb.Active()
+	websiteDb.Activate()
 	//todo: validate
 
 	_, err = w.data.Update(*websiteDb)

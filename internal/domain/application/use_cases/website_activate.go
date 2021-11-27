@@ -1,12 +1,12 @@
 package usecases
 
-type WebsiteActiveUseCase interface {
-	Execute(command WebsiteActiveCommand) (*WebsiteActiveResponse, error)
+type WebsiteActivateUseCase interface {
+	Execute(command WebsiteActivateCommand) (*WebsiteActivateResponse, error)
 }
 
-type WebsiteActiveCommand struct {
+type WebsiteActivateCommand struct {
 	Id int
 }
-type WebsiteActiveResponse struct {
+type WebsiteActivateResponse struct {
 	Success bool
 }

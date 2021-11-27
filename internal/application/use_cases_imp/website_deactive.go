@@ -6,23 +6,23 @@ import (
 	"website-monitor/internal/domain/infrastructure/data"
 )
 
-type websiteDeactiveUseCase struct {
+type websiteDeactivateUseCase struct {
 	data data.WebsiteData
 }
 
-func NewWebsiteDeactiveUseCase(d data.WebsiteData) usecases.WebsiteDeactiveUseCase {
-	return &websiteDeactiveUseCase{
+func NewWebsiteDeactivateUseCase(d data.WebsiteData) usecases.WebsiteDeactivateUseCase {
+	return &websiteDeactivateUseCase{
 		data: d,
 	}
 }
 
-func (w *websiteDeactiveUseCase) Execute(command usecases.WebsiteDeactiveCommand) (*usecases.WebsiteDeactiveResponse, error) {
+func (w *websiteDeactivateUseCase) Execute(command usecases.WebsiteDeactivateCommand) (*usecases.WebsiteDeactivateResponse, error) {
 	websiteDb, err := w.data.Get(command.Id)
 	if err != nil || websiteDb == nil {
 		return nil, errors.New("could not found this website")
 	}
 
-	websiteDb.Deactive()
+	websiteDb.Deactivate()
 	//todo: validate
 
 	_, err = w.data.Update(*websiteDb)
@@ -30,6 +30,6 @@ func (w *websiteDeactiveUseCase) Execute(command usecases.WebsiteDeactiveCommand
 		return nil, errors.New("an exception was occurred")
 	}
 
-	response := usecases.WebsiteDeactiveResponse{Success: true}
+	response := usecases.WebsiteDeactivateResponse{Success: true}
 	return &response, nil
 }

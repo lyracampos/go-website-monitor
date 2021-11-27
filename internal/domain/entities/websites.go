@@ -32,7 +32,7 @@ func (w *WebSite) Edit(name string, url string) {
 	w.LastUpdated = time.Now()
 }
 
-func (w *WebSite) Active() error {
+func (w *WebSite) Activate() error {
 	if w.Status == 1 {
 		return errors.New("this website already are activated")
 	}
@@ -41,7 +41,7 @@ func (w *WebSite) Active() error {
 	return nil
 }
 
-func (w *WebSite) Deactive() error {
+func (w *WebSite) Deactivate() error {
 	if w.Status == 0 {
 		return errors.New("this website already are deactivated")
 	}

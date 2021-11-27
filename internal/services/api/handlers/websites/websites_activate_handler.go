@@ -9,19 +9,19 @@ import (
 	useCases "website-monitor/internal/domain/application/use_cases"
 )
 
-type websiteActiveHandler struct {
+type websiteActivateHandler struct {
 	log     *log.Logger
 	useCase useCases.WebsiteActivateUseCase
 }
 
-func NewWebsiteActiveHandler(l *log.Logger, u useCases.WebsiteActivateUseCase) *websiteActiveHandler {
-	return &websiteActiveHandler{
+func NewWebsiteActivateHandler(l *log.Logger, u useCases.WebsiteActivateUseCase) *websiteActivateHandler {
+	return &websiteActivateHandler{
 		log:     l,
 		useCase: u,
 	}
 }
 
-func (h *websiteActiveHandler) Active(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteActivateHandler) Active(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {

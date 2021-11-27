@@ -10,19 +10,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type websiteDeactiveHandler struct {
+type websiteDeactivateHandler struct {
 	log     *log.Logger
-	usecase usecases.WebsiteDeactivateUseCase
+	useCase usecases.WebsiteDeactivateUseCase
 }
 
-func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactivateUseCase) *websiteDeactiveHandler {
-	return &websiteDeactiveHandler{
+func NewWebsiteDeactivateHandler(l *log.Logger, u usecases.WebsiteDeactivateUseCase) *websiteDeactivateHandler {
+	return &websiteDeactivateHandler{
 		log:     l,
-		usecase: u,
+		useCase: u,
 	}
 }
 
-func (h *websiteDeactiveHandler) Deactivate(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteDeactivateHandler) Deactivate(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -32,7 +32,7 @@ func (h *websiteDeactiveHandler) Deactivate(rw http.ResponseWriter, r *http.Requ
 	}
 
 	command := usecases.WebsiteDeactivateCommand{Id: id}
-	response, err := h.usecase.Execute(command)
+	response, err := h.useCase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)
 		rw.Write([]byte("an exception was occurred."))
