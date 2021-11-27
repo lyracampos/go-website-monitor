@@ -22,7 +22,7 @@ func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactiveUseCase)
 	}
 }
 
-func (h *websiteDeactiveHandler) Deactive(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteDeactiveHandler) Deactivate(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {
@@ -44,4 +44,5 @@ func (h *websiteDeactiveHandler) Deactive(rw http.ResponseWriter, r *http.Reques
 		rw.Write([]byte("an exception was occurred."))
 		return
 	}
+	rw.WriteHeader(http.StatusOK)
 }

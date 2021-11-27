@@ -5,6 +5,7 @@ import (
 	"time"
 )
 
+//todo: criar const/enum para status
 type WebSite struct {
 	Id          int
 	Name        string //obrigatóio, 3+

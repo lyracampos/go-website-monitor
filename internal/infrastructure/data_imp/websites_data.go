@@ -42,8 +42,15 @@ func (w *webSiteData) Add(website entities.WebSite) (*entities.WebSite, error) {
 	return &website, nil
 }
 func (w *webSiteData) Update(website entities.WebSite) (*entities.WebSite, error) {
-	return nil, nil
+	websites[website.Id-1].Name = website.Name
+	websites[website.Id-1].Url = website.Url
+	websites[website.Id-1].LastUpdated = website.LastUpdated
+	return websites[website.Id-1], nil
 }
 func (w *webSiteData) Delete(id int) (bool, error) {
-	return false, nil
+	copy(websites[id:], websites[id+1:])
+	websites[len(websites)-1] = nil
+	websites = websites[:len(websites)-1]
+
+	return true, nil
 }

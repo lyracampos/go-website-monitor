@@ -47,11 +47,29 @@ func main() {
 	websiteAddRouter := router.Methods(http.MethodPost).Subrouter()
 	websiteAddRouter.HandleFunc("/websites", websiteAddHandler.Add)
 
+	// website - edit
+	websiteEditUseCase := usecasesimp.NewWebsiteEditUseCase(data)
+	websiteEditHandler := websites.NewWebsitesEditHandler(log, websiteEditUseCase)
+	websiteEditRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteEditRouter.HandleFunc("/websites/{id:[0-9]+}", websiteEditHandler.Edit)
+
+	// website - delete
+	websiteDeleteUseCase := usecasesimp.NewWebsiteDeleteUseCase(data)
+	websiteDeleteHandler := websites.NewWebsiteDeleteHandler(log, websiteDeleteUseCase)
+	websiteDeleteRouter := router.Methods(http.MethodDelete).Subrouter()
+	websiteDeleteRouter.HandleFunc("/websites/{id:[0-9]+}", websiteDeleteHandler.Delete)
+
 	// website - active
 	websiteActiveUseCase := usecasesimp.NewWebsiteActiveUseCase(data)
 	websiteActiveHandler := websites.NewWebsiteActiveHandler(log, websiteActiveUseCase)
 	websiteActiveRouter := router.Methods(http.MethodPut).Subrouter()
 	websiteActiveRouter.HandleFunc("/websites/{id:[0-9]+}/active", websiteActiveHandler.Active)
+
+	// website - deactivate
+	websiteDeactiveUseCase := usecasesimp.NewWebsiteDeactiveUseCase(data)
+	websiteDeactiveHandler := websites.NewWebsiteDeactiveHandler(log, websiteDeactiveUseCase)
+	websiteDeactiveRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteDeactiveRouter.HandleFunc("/websites/{id:[0-9]+}/deactivate", websiteDeactiveHandler.Deactivate)
 
 	http.Handle("/", router)
 
