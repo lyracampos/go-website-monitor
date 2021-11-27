@@ -53,6 +53,12 @@ func main() {
 	websiteEditRouter := router.Methods(http.MethodPut).Subrouter()
 	websiteEditRouter.HandleFunc("/websites/{id:[0-9]+}", websiteEditHandler.Edit)
 
+	// website - delete
+	websiteDeleteUseCase := usecasesimp.NewWebsiteDeleteUseCase(data)
+	websiteDeleteHandler := websites.NewWebsiteDeleteHandler(log, websiteDeleteUseCase)
+	websiteDeleteRouter := router.Methods(http.MethodDelete).Subrouter()
+	websiteDeleteRouter.HandleFunc("/websites/{id:[0-9]+}", websiteDeleteHandler.Delete)
+
 	// website - active
 	websiteActiveUseCase := usecasesimp.NewWebsiteActiveUseCase(data)
 	websiteActiveHandler := websites.NewWebsiteActiveHandler(log, websiteActiveUseCase)
