@@ -65,6 +65,12 @@ func main() {
 	websiteActiveRouter := router.Methods(http.MethodPut).Subrouter()
 	websiteActiveRouter.HandleFunc("/websites/{id:[0-9]+}/active", websiteActiveHandler.Active)
 
+	// website - deactivate
+	websiteDeactiveUseCase := usecasesimp.NewWebsiteDeactiveUseCase(data)
+	websiteDeactiveHandler := websites.NewWebsiteDeactiveHandler(log, websiteDeactiveUseCase)
+	websiteDeactiveRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteDeactiveRouter.HandleFunc("/websites/{id:[0-9]+}/deactivate", websiteDeactiveHandler.Deactivate)
+
 	http.Handle("/", router)
 
 	s := http.Server{
