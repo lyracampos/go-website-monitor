@@ -11,10 +11,10 @@ import (
 
 type websiteActiveHandler struct {
 	log     *log.Logger
-	useCase useCases.WebsiteActiveUseCase
+	useCase useCases.WebsiteActivateUseCase
 }
 
-func NewWebsiteActiveHandler(l *log.Logger, u useCases.WebsiteActiveUseCase) *websiteActiveHandler {
+func NewWebsiteActiveHandler(l *log.Logger, u useCases.WebsiteActivateUseCase) *websiteActiveHandler {
 	return &websiteActiveHandler{
 		log:     l,
 		useCase: u,
@@ -30,7 +30,7 @@ func (h *websiteActiveHandler) Active(rw http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	command := useCases.WebsiteActiveCommand{Id: id}
+	command := useCases.WebsiteActivateCommand{Id: id}
 	response, err := h.useCase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)

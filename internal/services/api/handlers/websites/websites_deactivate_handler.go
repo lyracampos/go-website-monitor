@@ -12,10 +12,10 @@ import (
 
 type websiteDeactiveHandler struct {
 	log     *log.Logger
-	usecase usecases.WebsiteDeactiveUseCase
+	usecase usecases.WebsiteDeactivateUseCase
 }
 
-func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactiveUseCase) *websiteDeactiveHandler {
+func NewWebsiteDeactiveHandler(l *log.Logger, u usecases.WebsiteDeactivateUseCase) *websiteDeactiveHandler {
 	return &websiteDeactiveHandler{
 		log:     l,
 		usecase: u,
@@ -31,7 +31,7 @@ func (h *websiteDeactiveHandler) Deactivate(rw http.ResponseWriter, r *http.Requ
 		return
 	}
 
-	command := usecases.WebsiteDeactiveCommand{Id: id}
+	command := usecases.WebsiteDeactivateCommand{Id: id}
 	response, err := h.usecase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)
