@@ -27,6 +27,13 @@ func (h *websitesAddHandler) Add(rw http.ResponseWriter, r *http.Request) {
 	var command useCases.WebsiteAddCommand
 	json.Unmarshal(requestBody, &command)
 
+	err := command.Validate()
+	if err != nil {
+		rw.WriteHeader(http.StatusBadRequest)
+		rw.Write([]byte(err.Error()))
+		return
+	}
+
 	response, err := h.useCase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)

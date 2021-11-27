@@ -2,15 +2,17 @@ package entities
 
 import (
 	"errors"
+	"github.com/go-playground/validator"
 	"time"
+	"website-monitor/internal/domain/validations"
 )
 
 //todo: criar const/enum para status
 type WebSite struct {
 	Id          int
-	Name        string //obrigatóio, 3+
-	Url         string //obrigatório, válido, 10+
-	Status      int    //obrigatório
+	Name        string  `validate:"required"`
+	Url         string  `validate:"required,url"`
+	Status      int
 	LastChecked time.Time
 	LastUpdated time.Time
 }
@@ -46,4 +48,10 @@ func (w *WebSite) Deactive() error {
 	w.Status = 0
 	w.LastUpdated = time.Now()
 	return nil
+}
+
+func (w *WebSite) Validate() error {
+	validate := validator.New()
+	validate.RegisterValidation("url", validations.ValidateURL)
+	return validate.Struct(w)
 }

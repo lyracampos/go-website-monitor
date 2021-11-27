@@ -39,10 +39,18 @@ func (h *websitesEditHandler) Edit(rw http.ResponseWriter, r *http.Request) {
 	json.Unmarshal(requestBody, &command)
 	command.Id = id
 
+	err = command.Validate()
+	if err != nil {
+		rw.WriteHeader(http.StatusBadRequest)
+		rw.Write([]byte(err.Error()))
+		return
+	}
+
 	response, err := h.useCase.Execute(command)
 	if err != nil {
 		rw.WriteHeader(http.StatusInternalServerError)
 		rw.Write([]byte("an exception was occurred."))
+		return
 	}
 
 	if err := json.NewEncoder(rw).Encode(response); err != nil {
