@@ -7,6 +7,10 @@ import (
 	"os"
 	"os/signal"
 	"time"
+
+	"github.com/go-openapi/runtime/middleware"
+
+
 	usecasesimp "website-monitor/internal/application/use_cases_imp"
 	dataimp "website-monitor/internal/infrastructure/data_imp"
 	"website-monitor/internal/services/api/handlers/health"
@@ -70,6 +74,12 @@ func main() {
 	websiteDeactiveHandler := websites.NewWebsiteDeactivateHandler(log, websiteDeactiveUseCase)
 	websiteDeactiveRouter := router.Methods(http.MethodPut).Subrouter()
 	websiteDeactiveRouter.HandleFunc("/websites/{id:[0-9]+}/deactivate", websiteDeactiveHandler.Deactivate)
+
+	redocOpts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
+	sh := middleware.Redoc(redocOpts, nil)
+	swaggerRoute := router.Methods(http.MethodGet).Subrouter()
+	swaggerRoute.Handle("/docs", sh)
+	swaggerRoute.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
 
 	http.Handle("/", router)
 

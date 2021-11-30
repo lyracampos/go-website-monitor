@@ -5,7 +5,7 @@ import (
 	"net/url"
 )
 
-func ValidateURL(fl validator.FieldLevel) bool {
+func UrlValidate(fl validator.FieldLevel) bool {
 	_, err := url.ParseRequestURI(fl.Field().String())
 	if err != nil {
 		return false

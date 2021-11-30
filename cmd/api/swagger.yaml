@@ -1,0 +1,66 @@
+basePath: /
+consumes:
+- application/json
+definitions:
+  WebSite:
+    description: 'todo: criar const/enum para status'
+    properties:
+      Id:
+        format: int64
+        type: integer
+      LastChecked:
+        format: date-time
+        type: string
+      LastUpdated:
+        format: date-time
+        type: string
+      Name:
+        type: string
+      Status:
+        format: int64
+        type: integer
+      Url:
+        type: string
+    type: object
+    x-go-package: website-monitor/internal/domain/entities
+info:
+  description: the purpose of this api is to provide a monitoring service for websites
+  termsOfService: there are no TOS at this moment, use at your own risk we take no
+    responsibility
+  title: Website Monitor API.
+  version: 0.0.1
+paths:
+  /websites:
+    get:
+      description: Return a list of products from the database
+      operationId: listWebsites
+      responses:
+        "200":
+          $ref: '#/responses/websitesResponse'
+      tags:
+      - websites
+  /websites/1:
+    get:
+      description: Return a list of products from the database
+      operationId: getWebsite
+      responses:
+        "200":
+          $ref: '#/responses/websiteResponse'
+      tags:
+      - websites
+produces:
+- application/json
+responses:
+  websiteResponse:
+    description: Data structure representing a  websites
+    schema:
+      $ref: '#/definitions/WebSite'
+  websitesResponse:
+    description: Data structure representing a list of websites
+    schema:
+      items:
+        $ref: '#/definitions/WebSite'
+      type: array
+schemes:
+- http
+swagger: "2.0"

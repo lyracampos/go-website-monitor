@@ -5,6 +5,7 @@ import (
 	"log"
 	"net/http"
 	"strconv"
+	"website-monitor/internal/domain/entities"
 	"website-monitor/internal/domain/infrastructure/data"
 
 	"github.com/gorilla/mux"
@@ -15,6 +16,10 @@ type websiteGetHandler struct {
 	data data.WebsiteData
 }
 
+// swagger:route GET /websites/1 websites getWebsite
+// Return a list of products from the database
+// responses:
+//	200: websiteResponse
 func NewWebsiteGetHandler(l *log.Logger, d data.WebsiteData) *websiteGetHandler {
 	return &websiteGetHandler{
 		log:  l,
@@ -41,4 +46,12 @@ func (h *websiteGetHandler) Get(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(rw).Encode(website)
+}
+
+// Data structure representing a  websites
+// swagger:response websiteResponse
+type websiteResponseWrapper struct {
+	// Newly created product
+	// in: body
+	Body entities.WebSite
 }

@@ -34,7 +34,7 @@ func (w *WebSite) Edit(name string, url string) {
 
 func (w *WebSite) Activate() error {
 	if w.Status == 1 {
-		return errors.New("this website already are activated")
+		return errors.New("website already are activated")
 	}
 	w.Status = 1
 	w.LastUpdated = time.Now()
@@ -52,6 +52,6 @@ func (w *WebSite) Deactivate() error {
 
 func (w *WebSite) Validate() error {
 	validate := validator.New()
-	validate.RegisterValidation("url", validations.ValidateURL)
+	validate.RegisterValidation("url", validations.UrlValidate)
 	return validate.Struct(w)
 }
