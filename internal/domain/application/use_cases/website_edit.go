@@ -24,6 +24,6 @@ type WebsiteEditResponse struct {
 
 func (w *WebsiteEditCommand) Validate() error {
 	validate := validator.New()
-	validate.RegisterValidation("url", validations.ValidateURL)
+	validate.RegisterValidation("url", validations.UrlValidate)
 	return validate.Struct(w)
 }

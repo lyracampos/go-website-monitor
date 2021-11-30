@@ -23,6 +23,6 @@ type WebsiteAddResponse struct {
 
 func (w *WebsiteAddCommand) Validate() error {
 	validate := validator.New()
-	validate.RegisterValidation("url", validations.ValidateURL)
+	validate.RegisterValidation("url", validations.UrlValidate)
 	return validate.Struct(w)
 }
