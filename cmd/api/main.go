@@ -63,17 +63,17 @@ func main() {
 	websiteDeleteRouter := router.Methods(http.MethodDelete).Subrouter()
 	websiteDeleteRouter.HandleFunc("/websites/{id:[0-9]+}", websiteDeleteHandler.Delete)
 
-	// website - active
-	websiteActiveUseCase := usecasesimp.NewWebsiteActivateUseCase(data)
-	websiteActiveHandler := websites.NewWebsiteActivateHandler(log, websiteActiveUseCase)
-	websiteActiveRouter := router.Methods(http.MethodPut).Subrouter()
-	websiteActiveRouter.HandleFunc("/websites/{id:[0-9]+}/active", websiteActiveHandler.Active)
+	// website - enable
+	websiteEnableUseCase := usecasesimp.NewWebsiteEnableUseCase(data)
+	websiteEnableHandler := websites.NewWebsiteEnableHandler(log, websiteEnableUseCase)
+	websiteEnableRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteEnableRouter.HandleFunc("/websites/{id:[0-9]+}/enable", websiteEnableHandler.Enable)
 
-	// website - deactivate
-	websiteDeactiveUseCase := usecasesimp.NewWebsiteDeactivateUseCase(data)
-	websiteDeactiveHandler := websites.NewWebsiteDeactivateHandler(log, websiteDeactiveUseCase)
-	websiteDeactiveRouter := router.Methods(http.MethodPut).Subrouter()
-	websiteDeactiveRouter.HandleFunc("/websites/{id:[0-9]+}/deactivate", websiteDeactiveHandler.Deactivate)
+	// website - disable
+	websiteDisableUseCase := usecasesimp.NewWebsiteDisableUseCase(data)
+	websiteDisableHandler := websites.NewWebsiteDisableHandler(log, websiteDisableUseCase)
+	websiteDisableRouter := router.Methods(http.MethodPut).Subrouter()
+	websiteDisableRouter.HandleFunc("/websites/{id:[0-9]+}/disable", websiteDisableHandler.Disable)
 
 	redocOpts := middleware.RedocOpts{SpecURL: "/swagger.yaml"}
 	sh := middleware.Redoc(redocOpts, nil)
