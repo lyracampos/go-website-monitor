@@ -10,19 +10,19 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type websiteDeactivateHandler struct {
+type websiteDisableHandler struct {
 	log     *log.Logger
 	useCase usecases.WebsiteDisableUseCase
 }
 
-func NewWebsiteDeactivateHandler(l *log.Logger, u usecases.WebsiteDisableUseCase) *websiteDeactivateHandler {
-	return &websiteDeactivateHandler{
+func NewWebsiteDisableHandler(l *log.Logger, u usecases.WebsiteDisableUseCase) *websiteDisableHandler {
+	return &websiteDisableHandler{
 		log:     l,
 		useCase: u,
 	}
 }
 
-func (h *websiteDeactivateHandler) Deactivate(rw http.ResponseWriter, r *http.Request) {
+func (h *websiteDisableHandler) Disable(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
 	if err != nil {

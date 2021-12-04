@@ -1,12 +1,12 @@
 package usecases
 
-type WebsiteDeactivateUseCase interface {
-	Execute(command WebsiteDeactivateCommand) (*WebsiteDeactivateResponse, error)
+type WebsiteDisableUseCase interface {
+	Execute(command WebsiteDisableCommand) (*WebsiteDisableResponse, error)
 }
 
-type WebsiteDeactivateCommand struct {
+type WebsiteDisableCommand struct {
 	Id int
 }
-type WebsiteDeactivateResponse struct {
+type WebsiteDisableResponse struct {
 	Success bool
 }

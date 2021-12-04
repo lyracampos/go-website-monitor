@@ -20,12 +20,15 @@ func NewWebsiteAddUseCase(d data.WebsiteData) usecases.WebsiteAddUseCase {
 func (w *websiteAddUseCase) Execute(command usecases.WebsiteAddCommand) (*usecases.WebsiteAddResponse, error) {
 	website := entities.NewWebsite(command.Name, command.Url)
 
-	//todo: validar entidade
-	webistedb, err := w.data.Add(*website)
-	if err != nil || webistedb == nil {
+	err := website.Validate()
+	if err != nil {
+		return nil, err
+	}
+	websiteCurrent, err := w.data.Insert(*website)
+	if err != nil || websiteCurrent == nil {
 		return nil, errors.New("an exception was occurred")
 	}
 
-	response := usecases.WebsiteAddResponse{Id: webistedb.Id, Name: webistedb.Name, Url: webistedb.Url, Status: webistedb.Status}
+	response := usecases.WebsiteAddResponse{Id: websiteCurrent.Id, Name: websiteCurrent.Name, Url: websiteCurrent.Url, Status: websiteCurrent.Status}
 	return &response, nil
 }

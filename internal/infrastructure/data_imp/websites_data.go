@@ -30,7 +30,7 @@ func (w *webSiteData) Get(id int) (*entities.WebSite, error) {
 	}
 	return nil, errors.New("could not found website")
 }
-func (w *webSiteData) Add(website entities.WebSite) (*entities.WebSite, error) {
+func (w *webSiteData) Insert(website entities.WebSite) (*entities.WebSite, error) {
 	newId := 1
 	lastWebsite := websites[len(websites)-1]
 
