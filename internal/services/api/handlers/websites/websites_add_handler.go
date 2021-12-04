@@ -20,7 +20,14 @@ func NewWebsiteAddHandler(l *log.Logger, u useCases.WebsiteAddUseCase) *websites
 	}
 }
 
-func (h *websitesAddHandler) Add(rw http.ResponseWriter, r *http.Request) {
+//	swagger:route POST /websites websites AddWebsite
+//	Add new website in application
+//
+//	responses:
+//	 201: websiteAddResponse
+//	 400: badRequestResponse
+//   501: internalServerErrorResponse
+func (h *websitesAddHandler) Create(rw http.ResponseWriter, r *http.Request) {
 	rw.Header().Set("Content-Type", "application/json")
 
 	requestBody, _ := ioutil.ReadAll(r.Body)

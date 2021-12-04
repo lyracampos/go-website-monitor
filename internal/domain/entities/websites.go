@@ -4,15 +4,15 @@ import (
 	"errors"
 	"github.com/go-playground/validator"
 	"time"
+	"website-monitor/internal/domain/types"
 	"website-monitor/internal/domain/validations"
 )
 
-//todo: criar const/enum para status
 type WebSite struct {
 	Id          int
 	Name        string  `validate:"required"`
 	Url         string  `validate:"required,url"`
-	Status      int
+	Status      types.WebsiteStatus
 	LastChecked time.Time
 	LastUpdated time.Time
 }
@@ -32,20 +32,20 @@ func (w *WebSite) Edit(name string, url string) {
 	w.LastUpdated = time.Now()
 }
 
-func (w *WebSite) Activate() error {
-	if w.Status == 1 {
+func (w *WebSite) Enable() error {
+	if w.Status == types.Enabled {
 		return errors.New("website already are activated")
 	}
-	w.Status = 1
+	w.Status = types.Enabled
 	w.LastUpdated = time.Now()
 	return nil
 }
 
-func (w *WebSite) Deactivate() error {
-	if w.Status == 0 {
+func (w *WebSite) Disable() error {
+	if w.Status == types.Disabled {
 		return errors.New("this website already are deactivated")
 	}
-	w.Status = 0
+	w.Status = types.Disabled
 	w.LastUpdated = time.Now()
 	return nil
 }

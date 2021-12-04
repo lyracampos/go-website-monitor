@@ -21,6 +21,13 @@ func NewWebsiteDeleteHandler(l *log.Logger, u useCases.WebsiteDeleteUseCase) *we
 	}
 }
 
+// swagger:route DELETE /websites/{id} websites WebsiteDelete
+// Remove website from the application
+//
+// responses:
+//  204: noContentResponse
+//  404: badRequestResponse
+//  501: internalServerErrorResponse
 func (h *websitesDeleteHandler) Delete(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])

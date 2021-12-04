@@ -2,6 +2,7 @@ package usecases
 
 import (
 	"github.com/go-playground/validator"
+	"website-monitor/internal/domain/types"
 	"website-monitor/internal/domain/validations"
 )
 
@@ -19,7 +20,7 @@ type WebsiteEditResponse struct {
 	Id     int
 	Name   string
 	Url    string
-	Status int
+	Status types.WebsiteStatus
 }
 
 func (w *WebsiteEditCommand) Validate() error {

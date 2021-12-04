@@ -23,7 +23,10 @@ func (w *websiteEditUseCase) Execute(command usecases.WebsiteEditCommand) (*usec
 	}
 
 	websiteDb.Edit(command.Name, command.Url)
-	//todo: validar
+	err = websiteDb.Validate()
+	if err != nil {
+		return nil, err
+	}
 
 	_, err = w.data.Update(*websiteDb)
 	if err != nil {

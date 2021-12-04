@@ -1,2 +1,2 @@
 swagger:
-	swagger generate spec -o ./swagger.yaml --scan-models
+	swagger generate spec -o ./internal/services/api/docs/swagger.yaml --scan-models

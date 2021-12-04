@@ -22,6 +22,13 @@ func NewWebsitesEditHandler(l *log.Logger, u useCases.WebsiteEditUseCase) *websi
 	}
 }
 
+// swagger:route PUT /websites/{id} websites WebsiteEdit
+// Edit one website in application
+//
+// responses:
+//  200: websiteEditResponse
+//  404: notFoundResponse
+//  501: internalServerErrorResponse
 func (h *websitesEditHandler) Edit(rw http.ResponseWriter, r *http.Request) {
 	//todo: revisar esse handler
 	rw.Header().Set("Content-Type", "application/json")
