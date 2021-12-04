@@ -51,19 +51,3 @@ func (h *websitesAddHandler) Create(rw http.ResponseWriter, r *http.Request) {
 	rw.WriteHeader(http.StatusCreated)
 	json.NewEncoder(rw).Encode(response)
 }
-
-// Data structure representing website added
-// swagger:response websiteAddResponse
-type websiteAddResponseWrapper struct {
-	// Newly added website
-	// in: body
-	Body useCases.WebsiteAddResponse
-}
-
-// swagger:parameters AddWebsite
-type websiteAddCommandWrapper struct {
-	// Payload to add new website in application
-	// in: body
-	// required: true
-	Body useCases.WebsiteAddCommand
-}

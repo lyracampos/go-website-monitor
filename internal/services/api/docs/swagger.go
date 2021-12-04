@@ -18,9 +18,9 @@
 // swagger:meta
 package docs
 
-// Generic error message returned as a string
-// swagger:response errorResponse
-type errorResponseWrapper struct {
+// Internal server error message returned as a string
+// swagger:response internalServerErrorResponse
+type internalServerErrorResponseWrapper struct {
 	// error description
 	// in: body
 	Body MessageError
@@ -28,7 +28,7 @@ type errorResponseWrapper struct {
 
 // Not found message error returned as string
 // swagger:response notFoundResponse
-type errorNotFoundWrapper struct {
+type errorNotFoundResponseWrapper struct {
 	// error description
 	// in: body
 	Body MessageError
@@ -36,12 +36,15 @@ type errorNotFoundWrapper struct {
 
 // BadRequest message error returned as string
 // swagger:response badRequestResponse
-type badRequestWrapper struct {
+type badRequestResponseWrapper struct {
 	// error description
 	// in: body
 	Body MessageError
 }
 
+// NoContent message error returned as string
+// swagger:response noContentResponse
+type noContentResponseWrapper struct { }
 
 type MessageError struct {
 	Message string `json:"message"`

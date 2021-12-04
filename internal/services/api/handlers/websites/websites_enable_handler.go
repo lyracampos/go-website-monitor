@@ -21,6 +21,13 @@ func NewWebsiteEnableHandler(l *log.Logger, u useCases.WebsiteEnableUseCase) *we
 	}
 }
 
+// swagger:route PUT /websites/{id}/enable websites WebsiteEnable
+// Enable monitoring to one website from the application
+//
+// responses:
+//  200: websiteEnableResponse
+//  404: notFoundResponse
+//  501: internalServerErrorResponse
 func (h *websiteEnableHandler) Enable(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])

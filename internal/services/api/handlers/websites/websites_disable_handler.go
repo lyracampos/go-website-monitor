@@ -22,6 +22,13 @@ func NewWebsiteDisableHandler(l *log.Logger, u usecases.WebsiteDisableUseCase) *
 	}
 }
 
+// swagger:route PUT /websites/{id}/disable websites WebsiteDisable
+// Disable monitoring to one website from the application
+//
+// responses:
+//  200: websiteDisableResponse
+//  404: notFoundResponse
+//  501: internalServerErrorResponse
 func (h *websiteDisableHandler) Disable(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])

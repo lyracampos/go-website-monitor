@@ -58,6 +58,44 @@ definitions:
         type: string
     type: object
     x-go-package: website-monitor/internal/domain/application/use_cases
+  WebsiteDisableResponse:
+    properties:
+      Success:
+        type: boolean
+    type: object
+    x-go-package: website-monitor/internal/domain/application/use_cases
+  WebsiteEditCommand:
+    properties:
+      Id:
+        format: int64
+        type: integer
+      name:
+        type: string
+        x-go-name: Name
+      url:
+        type: string
+        x-go-name: Url
+    type: object
+    x-go-package: website-monitor/internal/domain/application/use_cases
+  WebsiteEditResponse:
+    properties:
+      Id:
+        format: int64
+        type: integer
+      Name:
+        type: string
+      Status:
+        $ref: '#/definitions/WebsiteStatus'
+      Url:
+        type: string
+    type: object
+    x-go-package: website-monitor/internal/domain/application/use_cases
+  WebsiteEnableResponse:
+    properties:
+      Success:
+        type: boolean
+    type: object
+    x-go-package: website-monitor/internal/domain/application/use_cases
   WebsiteStatus:
     format: int64
     type: integer
@@ -75,9 +113,9 @@ paths:
       operationId: ListWebsites
       responses:
         "200":
-          $ref: '#/responses/listWebsiteResponse'
+          $ref: '#/responses/websiteListResponse'
         "501":
-          $ref: '#/responses/errorResponse'
+          $ref: '#/responses/internalServerErrorResponse'
       tags:
       - websites
     post:
@@ -99,17 +137,92 @@ paths:
           $ref: '#/responses/internalServerErrorResponse'
       tags:
       - websites
+  /websites/{id}:
+    delete:
+      description: Remove website from the application
+      operationId: WebsiteDelete
+      parameters:
+      - description: the id of website for which the operation relates
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+        x-go-name: ID
+      responses:
+        "204":
+          $ref: '#/responses/noContentResponse'
+        "404":
+          $ref: '#/responses/badRequestResponse'
+        "501":
+          $ref: '#/responses/internalServerErrorResponse'
+      tags:
+      - websites
+    put:
+      description: Edit one website in application
+      operationId: WebsiteEdit
+      responses:
+        "200":
+          $ref: '#/responses/websiteEditResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+        "501":
+          $ref: '#/responses/internalServerErrorResponse'
+      tags:
+      - websites
+  /websites/{id}/disable:
+    put:
+      description: Disable monitoring to one website from the application
+      operationId: WebsiteDisable
+      parameters:
+      - description: the id of website for which the operation relates
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/websiteDisableResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+        "501":
+          $ref: '#/responses/internalServerErrorResponse'
+      tags:
+      - websites
+  /websites/{id}/enable:
+    put:
+      description: Enable monitoring to one website from the application
+      operationId: WebsiteEnable
+      parameters:
+      - description: the id of website for which the operation relates
+        format: int64
+        in: path
+        name: id
+        required: true
+        type: integer
+        x-go-name: ID
+      responses:
+        "200":
+          $ref: '#/responses/websiteEnableResponse'
+        "404":
+          $ref: '#/responses/notFoundResponse'
+        "501":
+          $ref: '#/responses/internalServerErrorResponse'
+      tags:
+      - websites
   /websites/1:
     get:
       description: Return a website from the application
       operationId: GetWebiste
       responses:
         "200":
-          $ref: '#/responses/websiteResponse'
+          $ref: '#/responses/websiteGetResponse'
         "404":
           $ref: '#/responses/notFoundResponse'
         "501":
-          $ref: '#/responses/errorResponse'
+          $ref: '#/responses/internalServerErrorResponse'
       tags:
       - websites
 produces:
@@ -119,16 +232,12 @@ responses:
     description: BadRequest message error returned as string
     schema:
       $ref: '#/definitions/MessageError'
-  errorResponse:
-    description: Generic error message returned as a string
+  internalServerErrorResponse:
+    description: Internal server error message returned as a string
     schema:
       $ref: '#/definitions/MessageError'
-  listWebsiteResponse:
-    description: Data structure representing a list of website
-    schema:
-      items:
-        $ref: '#/definitions/WebSite'
-      type: array
+  noContentResponse:
+    description: NoContent message error returned as string
   notFoundResponse:
     description: Not found message error returned as string
     schema:
@@ -137,10 +246,28 @@ responses:
     description: Data structure representing website added
     schema:
       $ref: '#/definitions/WebsiteAddResponse'
-  websiteResponse:
+  websiteDisableResponse:
+    description: Data structure representing website disabled
+    schema:
+      $ref: '#/definitions/WebsiteDisableResponse'
+  websiteEditResponse:
+    description: Data structure representing website edited
+    schema:
+      $ref: '#/definitions/WebsiteEditResponse'
+  websiteEnableResponse:
+    description: Data structure representing website enabled_
+    schema:
+      $ref: '#/definitions/WebsiteEnableResponse'
+  websiteGetResponse:
     description: Data structure representing a  websites
     schema:
       $ref: '#/definitions/WebSite'
+  websiteListResponse:
+    description: Data structure representing a list of website
+    schema:
+      items:
+        $ref: '#/definitions/WebSite'
+      type: array
 schemes:
 - http
 swagger: "2.0"

@@ -4,7 +4,6 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
-	"website-monitor/internal/domain/entities"
 	"website-monitor/internal/domain/infrastructure/data"
 )
 
@@ -23,8 +22,8 @@ func NewWebsiteListHandler(l *log.Logger, d data.WebsiteData) *websiteListHandle
 // swagger:route GET /websites websites ListWebsites
 // Return a list of website from the application
 // responses:
-//	200: listWebsiteResponse
-//	501: errorResponse
+//	200: websiteListResponse
+//	501: internalServerErrorResponse
 func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
 	h.log.Println("listing - web sites")
 	rw.Header().Set("Content-Type", "application/json")
@@ -37,12 +36,4 @@ func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
 	}
 
 	json.NewEncoder(rw).Encode(websites)
-}
-
-// Data structure representing a list of website
-// swagger:response listWebsiteResponse
-type websitesResponseWrapper struct {
-	// Newly created product
-	// in: body
-	Body []entities.WebSite
 }
