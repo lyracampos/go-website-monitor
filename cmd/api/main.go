@@ -10,7 +10,6 @@ import (
 
 	"github.com/go-openapi/runtime/middleware"
 
-
 	usecasesimp "website-monitor/internal/application/use_cases_imp"
 	dataimp "website-monitor/internal/infrastructure/data_imp"
 	"website-monitor/internal/services/api/handlers/health"
@@ -20,7 +19,7 @@ import (
 	"github.com/nicholasjackson/env"
 )
 
-var bindAddress = env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
+var bindAddress = env.String("BIND_ADDRESS", false, ":9094", "Bind address for the server")
 
 func main() {
 	env.Parse()
@@ -49,7 +48,7 @@ func main() {
 	websiteAddUseCase := usecasesimp.NewWebsiteAddUseCase(data)
 	websiteAddHandler := websites.NewWebsiteAddHandler(log, websiteAddUseCase)
 	websiteAddRouter := router.Methods(http.MethodPost).Subrouter()
-	websiteAddRouter.HandleFunc("/websites", websiteAddHandler.Add)
+	websiteAddRouter.HandleFunc("/websites", websiteAddHandler.Create)
 
 	// website - edit
 	websiteEditUseCase := usecasesimp.NewWebsiteEditUseCase(data)
@@ -79,7 +78,7 @@ func main() {
 	sh := middleware.Redoc(redocOpts, nil)
 	swaggerRoute := router.Methods(http.MethodGet).Subrouter()
 	swaggerRoute.Handle("/docs", sh)
-	swaggerRoute.Handle("/swagger.yaml", http.FileServer(http.Dir("./")))
+	swaggerRoute.Handle("/swagger.yaml", http.FileServer(http.Dir("./internal/services/api/docs")))
 
 	http.Handle("/", router)
 

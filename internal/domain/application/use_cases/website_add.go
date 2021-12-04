@@ -10,8 +10,18 @@ type WebsiteAddUseCase interface {
 	Execute(command WebsiteAddCommand) (*WebsiteAddResponse, error)
 }
 
+// swagger:model
 type WebsiteAddCommand struct {
+	// website name
+	//
+	// required: true
+	// max length: 255
 	Name string `json:"name" validate:"required"`
+
+	// website valid url
+	//
+	// required: true
+	// max length: 555
 	Url  string `json:"url" validate:"required,url"`
 }
 

@@ -1,21 +1,3 @@
-// Package classification Website Monitor API.
-//
-// the purpose of this api is to provide a monitoring service for websites
-// Terms Of Service:
-//
-// there are no TOS at this moment, use at your own risk we take no responsibility
-//
-//     Schemes: http
-//     BasePath: /
-//     Version: 0.0.1
-//
-//     Consumes:
-//     - application/json
-//
-//     Produces:
-//     - application/json
-//
-// swagger:meta
 package websites
 
 import (
@@ -38,12 +20,13 @@ func NewWebsiteListHandler(l *log.Logger, d data.WebsiteData) *websiteListHandle
 	}
 }
 
-// swagger:route GET /websites websites listWebsites
-// Return a list of products from the database
+// swagger:route GET /websites websites ListWebsites
+// Return a list of website from the application
 // responses:
-//	200: websitesResponse
+//	200: listWebsiteResponse
+//	501: errorResponse
 func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
-	h.log.Println("listing - websites")
+	h.log.Println("listing - web sites")
 	rw.Header().Set("Content-Type", "application/json")
 
 	websites, err := h.data.List()
@@ -56,8 +39,8 @@ func (h *websiteListHandler) List(rw http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(rw).Encode(websites)
 }
 
-// Data structure representing a list of websites
-// swagger:response websitesResponse
+// Data structure representing a list of website
+// swagger:response listWebsiteResponse
 type websitesResponseWrapper struct {
 	// Newly created product
 	// in: body

@@ -16,10 +16,12 @@ type websiteGetHandler struct {
 	data data.WebsiteData
 }
 
-// swagger:route GET /websites/1 websites getWebsite
-// Return a list of products from the database
+// swagger:route GET /websites/1 websites GetWebiste
+// Return a website from the application
 // responses:
 //	200: websiteResponse
+// 	404: notFoundResponse
+//	501: errorResponse
 func NewWebsiteGetHandler(l *log.Logger, d data.WebsiteData) *websiteGetHandler {
 	return &websiteGetHandler{
 		log:  l,
