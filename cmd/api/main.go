@@ -7,11 +7,11 @@ import (
 	"os"
 	"os/signal"
 	"time"
+	dataimp "website-monitor/internal/infrastructure/data_imp/repositories"
 
 	"github.com/go-openapi/runtime/middleware"
 
 	usecasesimp "website-monitor/internal/application/use_cases_imp"
-	dataimp "website-monitor/internal/infrastructure/data_imp"
 	"website-monitor/internal/services/api/handlers/health"
 	"website-monitor/internal/services/api/handlers/websites"
 

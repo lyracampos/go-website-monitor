@@ -4,6 +4,7 @@ go 1.16
 
 require (
 	github.com/go-openapi/runtime v0.21.0 // indirect
+	github.com/go-pg/pg/v10 v10.10.6 // indirect
 	github.com/go-playground/universal-translator v0.18.0 // indirect
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/gorilla/mux v1.8.0
