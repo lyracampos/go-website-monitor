@@ -1,1 +1,1 @@
-DROP TABLE IF EXISTS webistes;
+DROP TABLE IF EXISTS web_sites;

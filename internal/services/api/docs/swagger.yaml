@@ -30,19 +30,17 @@ definitions:
     x-go-package: website-monitor/internal/domain/entities
   WebsiteAddCommand:
     properties:
-      name:
+      Name:
         description: website name
         maxLength: 255
         type: string
-        x-go-name: Name
-      url:
+      Url:
         description: website valid url
         maxLength: 555
         type: string
-        x-go-name: Url
     required:
-    - name
-    - url
+    - Name
+    - Url
     type: object
     x-go-package: website-monitor/internal/domain/application/use_cases
   WebsiteAddResponse:
