@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="ALL" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bba313c7-0a16-40ce-af4b-7971b63f3f12" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/internal/infrastructure/data_imp/data_context/context.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/api" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/api" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmd/api/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/cmd/api/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/application/use_cases/website_add.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/application/use_cases/website_add.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/domain/entities/websites.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/domain/entities/websites.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/infrastructure/data_imp/migrations/000001_init_schema.down.sql" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/data_imp/migrations/000001_init_schema.down.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/infrastructure/data_imp/migrations/000001_init_schema.up.sql" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/data_imp/migrations/000001_init_schema.up.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/infrastructure/data_imp/repositories/websites_data.go" beforeDir="false" afterPath="$PROJECT_DIR$/internal/infrastructure/data_imp/repositories/websites_data.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/internal/services/api/docs/swagger.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/internal/services/api/docs/swagger.yaml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Go File" />
+      </list>
+    </option>
+  </component>
+  <component name="GOROOT" url="file:///usr/local/opt/go/libexec" />
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
+  </component>
+  <component name="GoLibraries">
+    <option name="indexEntireGoPath" value="false" />
+  </component>
+  <component name="ProjectId" id="21IcxdH90rhSR6PdW7rAkKwGZcD" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="postgresql" />
+    <property name="DefaultGoTemplateProperty" value="Go File" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="go.formatter.settings.were.checked" value="true" />
+    <property name="go.import.settings.migrated" value="true" />
+    <property name="go.modules.go.list.on.any.changes.was.set" value="true" />
+    <property name="go.sdk.automatically.set" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/internal/services/api/docs" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/services/api/docs" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/cmd/api" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/internal/infrastructure/data_imp/repositories" />
+      <recent name="$PROJECT_DIR$/cmd/api" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/internal/infrastructure/messaging_imp" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Go Build.go build go-website-monitor">
+    <configuration name="go build go-website-monitor" type="GoApplicationRunConfiguration" factoryName="Go Application">
+      <working_directory value="$PROJECT_DIR$" />
+      <kind value="FILE" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestChecksValidation in website-monitor/internal/domain/entities" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-website-monitor" />
+      <working_directory value="$PROJECT_DIR$/internal/domain/entities" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="website-monitor/internal/domain/entities" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestChecksValidation\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestWebsite in website-monitor/internal/domain/entities" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-website-monitor" />
+      <working_directory value="$PROJECT_DIR$/internal/domain/entities" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="website-monitor/internal/domain/entities" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestWebsite\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestWebsiteValid in website-monitor/internal/domain/entities" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-website-monitor" />
+      <working_directory value="$PROJECT_DIR$/internal/domain/entities" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="website-monitor/internal/domain/entities" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestWebsiteValid\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestWebsite/with_success_when_website_is_valid in website-monitor/internal/domain/entities" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="go-website-monitor" />
+      <working_directory value="$PROJECT_DIR$/internal/domain/entities" />
+      <root_directory value="$PROJECT_DIR$" />
+      <kind value="PACKAGE" />
+      <package value="website-monitor/internal/domain/entities" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <framework value="gotest" />
+      <pattern value="^\QTestWebsite\E$/^\Qwith_success_when_website_is_valid\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="SwaggerCodegen">
+      <option name="activeConfigurationType" value="FILE" />
+      <option name="configurationPath" value="" />
+      <option name="customJreEnabled" value="false" />
+      <option name="customTemplatesPath" value="" />
+      <option name="enableDebugLogging" value="false" />
+      <option name="generateToPath" value="$PROJECT_DIR$/gen" />
+      <option name="generationParameters">
+        <list />
+      </option>
+      <option name="generatorPath" value="https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/5.0.0/openapi-generator-cli-5.0.0.jar" />
+      <option name="jdkPath" value="" />
+      <option name="language" value="java" />
+      <option name="specificationPath" value="$PROJECT_DIR$/internal/services/api/docs/swagger.yaml" />
+      <method v="2" />
+    </configuration>
+    <list>
+      <item itemvalue="Go Build.go build go-website-monitor" />
+      <item itemvalue="Go Test.TestChecksValidation in website-monitor/internal/domain/entities" />
+      <item itemvalue="Go Test.TestWebsite/with_success_when_website_is_valid in website-monitor/internal/domain/entities" />
+      <item itemvalue="Go Test.TestWebsite in website-monitor/internal/domain/entities" />
+      <item itemvalue="Go Test.TestWebsiteValid in website-monitor/internal/domain/entities" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestChecksValidation in website-monitor/internal/domain/entities" />
+        <item itemvalue="Go Test.TestWebsite in website-monitor/internal/domain/entities" />
+        <item itemvalue="Go Test.TestWebsite/with_success_when_website_is_valid in website-monitor/internal/domain/entities" />
+        <item itemvalue="Go Test.TestWebsiteValid in website-monitor/internal/domain/entities" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VgoProject">
+    <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/services/api/handlers/websites/websites_enable_handler.go</url>
+          <line>31</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/application/use_cases_imp/website_add.go</url>
+          <line>20</line>
+          <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/infrastructure/data_imp/repositories/websites_data.go</url>
+          <line>16</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/cmd/api/main.go</url>
+          <line>24</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/internal/services/api/handlers/websites/websites_add_handler.go</url>
+          <line>30</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="websites" language="go" />
+      </configuration>
+    </watches-manager>
+  </component>
+</project>

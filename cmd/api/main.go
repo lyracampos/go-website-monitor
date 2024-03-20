@@ -7,11 +7,11 @@ import (
 	"os"
 	"os/signal"
 	"time"
+	dataimp "website-monitor/internal/infrastructure/data_imp/repositories"
 
 	"github.com/go-openapi/runtime/middleware"
 
 	usecasesimp "website-monitor/internal/application/use_cases_imp"
-	dataimp "website-monitor/internal/infrastructure/data_imp"
 	"website-monitor/internal/services/api/handlers/health"
 	"website-monitor/internal/services/api/handlers/websites"
 
@@ -19,7 +19,7 @@ import (
 	"github.com/nicholasjackson/env"
 )
 
-var bindAddress = env.String("BIND_ADDRESS", false, ":9094", "Bind address for the server")
+var bindAddress = env.String("BIND_ADDRESS", false, ":9090", "Bind address for the server")
 
 func main() {
 	env.Parse()

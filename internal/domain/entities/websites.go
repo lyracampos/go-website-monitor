@@ -2,27 +2,27 @@ package entities
 
 import (
 	"errors"
-	"github.com/go-playground/validator"
 	"time"
 	"website-monitor/internal/domain/types"
 	"website-monitor/internal/domain/validations"
+
+	"github.com/go-playground/validator"
 )
 
 type WebSite struct {
 	Id          int
-	Name        string  `validate:"required"`
-	Url         string  `validate:"required,url"`
+	Name        string `validate:"required"`
+	Url         string `validate:"required,url"`
 	Status      types.WebsiteStatus
-	LastChecked time.Time
-	LastUpdated time.Time
+	LastChecked time.Time `gorm:"column:last_checked"`
+	LastUpdated time.Time `gorm:"column:last_updated"`
 }
 
 func NewWebsite(name string, url string) *WebSite {
 	return &WebSite{
-		Name:        name,
-		Url:         url,
-		Status:      1,
-		LastChecked: time.Now(),
+		Name:   name,
+		Url:    url,
+		Status: 1,
 	}
 }
 

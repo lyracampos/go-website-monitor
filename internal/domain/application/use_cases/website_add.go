@@ -1,9 +1,10 @@
 package usecases
 
 import (
-	"github.com/go-playground/validator"
 	"website-monitor/internal/domain/types"
 	"website-monitor/internal/domain/validations"
+
+	"github.com/go-playground/validator"
 )
 
 type WebsiteAddUseCase interface {
@@ -16,13 +17,13 @@ type WebsiteAddCommand struct {
 	//
 	// required: true
 	// max length: 255
-	Name string `json:"name" validate:"required"`
+	Name string //`json:"name" validate:"required"`
 
 	// website valid url
 	//
 	// required: true
 	// max length: 555
-	Url  string `json:"url" validate:"required,url"`
+	Url string //`json:"url" validate:"required,url"`
 }
 
 type WebsiteAddResponse struct {
